@@ -2,7 +2,7 @@
 #   obj({a:1}) fun(supafn) obj({bla: 2}) -> code_1
 #   type(String) -> code_2
 
-match = (self, branches) ->
+match = (self, branches...) ->
   ->
     args = Array.prototype.slice.call(arguments, 0)
     args = args.sort()
