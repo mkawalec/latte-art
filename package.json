@@ -2,8 +2,20 @@
   "name": "latte-art",
   "version": "0.0.1",
   "description": "Pattern matching in coffee script",
-  "author": "Michal Kawalec",
+  "author": "Michal Kawalec <michal@bazzle.me>",
   "license": "MIT",
+  "private": true,
+  "contributors": [{
+    "name": "Jakub Z",
+    "email": "jakzale@gmail.com"
+  }],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mkawalec/latte-art"
+  },
+  "bugs": {
+    "url": "https://github.com/mkawalec/latte-art/issues"
+  },
   "dependencies": {
     "del": "^0.1.2",
     "gulp": "^3.8.7",
@@ -16,6 +28,7 @@
   "devDependencies": {
     "karma": "^0.12.23",
     "karma-chai": "^0.1.0",
+    "karma-coffee-preprocessor": "^0.2.1",
     "karma-mocha": "^0.1.9"
   }
 }
