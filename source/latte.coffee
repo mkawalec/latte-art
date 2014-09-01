@@ -2,6 +2,7 @@ match bla,
   obj({a:1}) fun(supafn) obj({bla: 2}) -> code_1
   type(String) -> code_2
   
+['a', 'b', rest] 
 
 w = (testelem) ->
   (rightParam) ->
@@ -19,6 +20,11 @@ w = (testelem) ->
             return acc
           ), {}
           rightParam.call(_.assign(@, thisExtension), toEval)
+        else
+          throw 'broken'
+      else if Object.prototype.toString.call(testelem) is '[object RegExp]'
+        if testelem.test param
+          rightParam.call(@, toEval)
         else
           throw 'broken'
       else
