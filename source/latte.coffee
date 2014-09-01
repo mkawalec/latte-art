@@ -11,7 +11,10 @@ match = (self, branches...) ->
       try
         return branch(args, allArgs)
       catch error
-        continue
+        if error.type is 'ValidationError'
+          continue
+        else
+          throw error
 
     return undefined
   
