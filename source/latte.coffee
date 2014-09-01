@@ -4,7 +4,10 @@ match bla,
   
 call = (fn, self, passed, allParams) ->
   if fn.__stamp isnt 'internal'
-    throw 'broken'
+    if passed.length > 0
+      throw 'broken'
+    else
+      fn.call(self, allParams)
   else
     fn.call(self, passed, allParams)
 
