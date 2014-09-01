@@ -1,6 +1,19 @@
-match bla,
-  obj({a:1}) fun(supafn) obj({bla: 2}) -> code_1
-  type(String) -> code_2
+# match bla,
+#   obj({a:1}) fun(supafn) obj({bla: 2}) -> code_1
+#   type(String) -> code_2
+
+match = (self, branches...) ->
+  ->
+    args = Array.prototype.slice.call(arguments, 0)
+    args = args.sort()
+    allArgs = _.cloneDeep args
+    for branch in branches
+      try
+        return branch(args, allArgs)
+      catch error
+        continue
+
+    return undefined
   
 call = (fn, self, passed, allParams) ->
   if fn.__stamp isnt 'internal'
