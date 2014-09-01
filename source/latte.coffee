@@ -15,7 +15,7 @@ call = (fn, self, passed, allParams) ->
 
 w = (testelem) ->
   (rightParam) ->
-    (toEval, allParams) ->
+    afterWrapping = (toEval, allParams) ->
       param = toEval.shift()
 
       if typeof testelem is 'function'
@@ -64,4 +64,5 @@ w = (testelem) ->
           msg: "The test parameter #{testelem} is of a wrong type"
           type: 'ValidationError'
 
-w::__stamp = 'internal'
+    afterWrapping::__stamp = 'internal'
+    afterWrapping
