@@ -39,6 +39,8 @@ w = (testelem) ->
           call(rightParam, @, toEval, allParams)
         else
           throw 'broken'
+      else if testelem is undefined
+        call(rightParam, @, toEval, allParams) 
       else
         throw 'unsupported arg'
 
