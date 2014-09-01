@@ -2,15 +2,19 @@ match bla,
   obj({a:1}) fun(supafn) obj({bla: 2}) -> code_1
   type(String) -> code_2
   
-['a', 'b', rest] 
+call = (fn, self, passed, allParams) ->
+  if fn.__stamp isnt 'internal'
+    throw 'broken'
+  else
+    fn.call(self, passed, allParams)
 
 w = (testelem) ->
   (rightParam) ->
-    (toEval) ->
+    (toEval, allParams) ->
       param = toEval.shift()
       if typeof testelem is 'function'
         if testelem(param)
-          rightParam.call(@, toEval)
+          call(rightParam, @, toEval, allParams)
         else
           throw 'broken'
       else if Object.prototype.toString.call(testelem) is '[object Object]'
@@ -19,14 +23,20 @@ w = (testelem) ->
             acc[value] = param[key]
             return acc
           ), {}
-          rightParam.call(_.assign(@, thisExtension), toEval)
+          call(rightParam, _.assign(@, thisExtension), toEval, allParams)
         else
           throw 'broken'
       else if Object.prototype.toString.call(testelem) is '[object RegExp]'
         if testelem.test param
-          rightParam.call(@, toEval)
+          call(rightParam, @, toEval, allParams)
+        else
+          throw 'broken'
+      else if typeof testelem is 'string' or typeof testelem is 'number'
+        if testelem is param
+          call(rightParam, @, toEval, allParams)
         else
           throw 'broken'
       else
         throw 'unsupported arg'
 
+w::__stamp = 'internal'
