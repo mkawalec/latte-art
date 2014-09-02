@@ -3,7 +3,8 @@ var gulp       = require('gulp'),
     concat     = require('gulp-concat'),
     uglify     = require('gulp-uglify'),
     sourcemaps = require('gulp-sourcemaps'),
-    del        = require('del');
+    del        = require('del'),
+    karma      = require('karma').server;
 
 var paths = {
   scripts: ['source/**/*.coffee']
@@ -28,4 +29,20 @@ gulp.task('watch', function () {
   gulp.watch(paths.scripts, ['scripts']);
 });
 
-gulp.task('default', ['watch', 'scripts']);
+// Run test once and exit
+gulp.task('test', function (done) {
+  karma.start({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done);
+});
+
+// Watch for file changes and re-run tests on each change
+gulp.task('tdd', function (done) {
+  karma.start({
+    configFile: __dirname + '/karma.conf.js'
+  }, done);
+});
+
+gulp.task('default', ['tdd']);
+

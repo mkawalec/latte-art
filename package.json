@@ -5,10 +5,12 @@
   "author": "Michal Kawalec <michal@bazzle.me>",
   "license": "MIT",
   "private": true,
-  "contributors": [{
-    "name": "Jakub Z",
-    "email": "jakzale@gmail.com"
-  }],
+  "contributors": [
+    {
+      "name": "Jakub Z",
+      "email": "jakzale@gmail.com"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/mkawalec/latte-art"
@@ -29,6 +31,7 @@
     "karma": "^0.12.23",
     "karma-chai": "^0.1.0",
     "karma-coffee-preprocessor": "^0.2.1",
-    "karma-mocha": "^0.1.9"
+    "karma-mocha": "^0.1.9",
+    "karma-phantomjs-launcher": "^0.1.4"
   }
 }
